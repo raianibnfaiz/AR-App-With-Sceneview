@@ -1,0 +1,21 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        mavenLocal()
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "SceneView"
+include ':sceneview'
+include ':arsceneview'
+//include ':sceneview_2_0_0'
+
+// Samples
+include ':samples:common'
+include ':samples:ar-augmented-image'
+include ':samples:ar-cloud-anchor'
+include ':samples:ar-model-viewer'
+include ':samples:ar-model-viewer-compose'
+include ':samples:ar-point-cloud'
+include ':samples:model-viewer'

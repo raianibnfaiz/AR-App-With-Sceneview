@@ -1,0 +1,63 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'org.jetbrains.dokka'
+}
+
+android {
+    namespace 'io.github.sceneview.ar'
+
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 24
+        targetSdk 34
+
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17
+    }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.8"
+    }
+    // Preserve compression of filament files
+    androidResources {
+        noCompress 'filamat', 'ktx'
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+
+    // Compose
+    implementation "androidx.compose.ui:ui:1.5.3"
+    implementation "androidx.compose.foundation:foundation:1.5.3"
+
+    // SceneView
+    api project(":sceneview")
+
+    // ARCore
+    api "com.google.ar:core:1.40.0"
+}
+
+apply plugin: "com.vanniktech.maven.publish"
